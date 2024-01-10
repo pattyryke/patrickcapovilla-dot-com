@@ -5,7 +5,7 @@ export default function Page() {
     
     return(
         <>
-            <p>idk</p>
+            <p>test</p>
         </>
     )
 }

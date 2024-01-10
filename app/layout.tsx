@@ -7,6 +7,7 @@ import '@/styles/globals.css';
 
 export const metadata: Metadata = {
     title: 'PatrickCapovilla.com',
+    description: 'something',
 };
 
 export default function RootLayout({
@@ -15,17 +16,17 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html>
+        <html className="w-full font-mono">
             <body>
                 <div className="main">
-                    <div className="top-bar">
+                    <div className="flex w-full h-14 text-3xl justify-center items-center shadow-sm shadow-black bg-zinc-800 text-white">
                         <h1>PatrickCapovilla.com</h1>
                     </div>
 
-                    <div className="dynamic-container">
-                        <div className="left-panel">
+                    <div className="flex flex-row p-2 w-full h-full">
+                        <div className="p-2 w-1/5 rounded-md bg-zinc-400">
                             <nav>
-                                <ul>
+                                <ul role="list" className="marker: list-disc pl-5">
                                     <li>
                                         <Link href="/home">Home</Link>
                                     </li>
@@ -36,7 +37,7 @@ export default function RootLayout({
                             </nav>
                         </div>
 
-                        <div className="content-panel">{children}</div>
+                        <div className="ml-2 p-2 w-full rounded-md bg-zinc-400">{children}</div>
                     </div>
                 
                     <div className="bottom-bar"></div>
