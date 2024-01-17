@@ -2,67 +2,64 @@ import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
-const Star = ({ parentRef }) => {
-  let w = gsap.getProperty(parentRef.current, 'width');
-  let h = gsap.getProperty(parentRef.current, 'height');
-  var [initPos, setInitPos] = useState({ x: w / 2, y: h / 2 });
-  var [destination, setDestination] = useState({ x: 0, y: 0 });
+const Star = ({ parentRef, delay }) => {
+  let w = gsap.getProperty(parentRef.current, 'scrollWidth');
+  let h = gsap.getProperty(parentRef.current, 'scrollHeight');
+  var [initPos, setInitPos] = useState({ x: (w/2), y: (h/2) });
+  var [dest, setDest] = useState({ x: 0, y: 0 })
 
 
   const starRef = useRef(null);
+  const tl = useRef();
 
 
-  const getDestination = (w, h) => {
+  const getDestination = (width, height) => {
     const randNum = Math.random();
-    const randX = gsap.utils.random(-(w/2), (w/2));
-    const randY = gsap.utils.random(-(h/2), (h/2));
-
-    console.log(destination);
+    const randX = gsap.utils.random(0, (width));
+    const randY = gsap.utils.random(0, (height));
 
     if (randNum < 0.25) {
-      // Top edge
-      setDestination({ x: randX, y: -h });
+      return { x: randX, y: -10 }; // Top edge
     } else if (randNum < 0.5) {
-      // Bottom edge
-      setDestination({ x: randX, y: h });
+      return { x: randX, y: (height+10) }; // Bottom edge
     } else if (randNum < 0.75) {
-      // Left edge
-      setDestination({ x: -w, y: randY });
+      return { x: -10, y: randY }; // Left edge
     } else {
-      // Right edge
-      setDestination({ x: -w, y: randY });
+      return { x: (width+10), y: randY }; // Right edge
     }
   };
 
-
+  useGSAP(
+    () => {
+      const stars = gsap.utils.toArray('.star');
+      tl.current = gsap
+        .timeline({ 
+          repeat: -1, 
+          repeatRefresh: true, 
+          delay: delay 
+        })
+        .fromTo(starRef.current, {
+          x: initPos.x,
+          y: initPos.y,
+          opacity: 0,
+          scale: 1,
+        },
+        {
+          x: dest.x,
+          y: dest.y,
+          opacity: 1,
+          scale: 4,
+          duration: 2,
+        });
+      
+    }, {dependencies: [dest, delay], scope: parentRef, revertOnUpdate: false}
+  );
   
   useEffect(() => {
-    setInitPos({ x: w / 2, y: h / 2 });
-    let newDest = getDestination(w, h);
-    setDestination(newDest);
+    setInitPos({ x: (w/2), y: (h/2) });
 
-    let tl = gsap.timeline({ repeat: -1, repeatRefresh: true })
-      .to(starRef.current, {
-        x: initPos.x,
-        y: initPos.y,
-        opacity: 1,
-        duration: 0.1,
-      })
-      .to(starRef.current, {
-        x: destination.x,
-        y: destination.y,
-        scale: 4,
-        duration: 2,
-        onComplete: () => {
-          let newDest = getDestination();
-          setDestination(newDest);
-          tl.invalidate().restart();
-        },
-      });
-
-    return () => {
-      tl.kill();
-    };
+    var newDest = getDestination(w, h);
+    setDest(newDest);
   }, [w, h]);
 
   return (

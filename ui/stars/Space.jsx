@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
 import StarsGroup from './StarsGroup';
-import Star from './Star';
 
 const Space = () => {
     let spaceVisor = useRef(null);
@@ -41,7 +40,7 @@ const Space = () => {
 
     return (
         <div ref={spaceVisor} className="space">
-            <Star parentRef={spaceVisor} />
+            <StarsGroup numStars={25} />
         </div>
     );
 };
