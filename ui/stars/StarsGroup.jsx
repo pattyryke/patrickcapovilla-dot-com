@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import Star from "./Star";
+import Stars from "./Stars";
 
 
 const StarsGroup = ({ numStars }) => {
@@ -17,7 +17,7 @@ const StarsGroup = ({ numStars }) => {
         height: '100vh'
       }}>
         {Array.from({ length: numberOfStars }).map((_, index) => (
-          <Star
+          <Stars
             key={index}
             parentRef={parentRef}
             delay={index * staggerDelay}
