@@ -40,7 +40,7 @@ const Space = () => {
 
     return (
         <div ref={spaceVisor} className="space">
-            <StarsGroup numStars={50} />
+            <StarsGroup numStars={100} />
         </div>
     );
 };

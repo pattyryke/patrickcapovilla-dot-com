@@ -24,28 +24,28 @@ const Stars = ({ parentRef, delay }) => {
         repeatRefresh: true, 
         delay: delay 
       })
-      .fromTo(starRef.current, {
-        opacity: 0,
-      },
-      {
-        opacity: 0.1,
+      .set(starRef.current, {
+        backgroundColor: 'orange',
       })
       .fromTo(starRef.current, {
         x: star.initPos.x,
         y: star.initPos.y,
-        opacity: 0.2,
-        backgroundColor: 'orange',
+        opacity: 0,
         scale: 1,
       },
       {
+        opacity: 0.2,
+        duration: 2,
+      })
+      .to(starRef.current, {
         x: star.destinationPos.x,
         y: star.destinationPos.y,
         opacity: 1,
         backgroundColor: 'yellow',
         scale: 4,
-        duration: 2,
-        ease: 'power1.in',
-      }, "<");
+        duration: gsap.utils.random(2, 15),
+        ease: 'power4.inOut',
+      }, "<2");
 
 
       return () => tl.kill();

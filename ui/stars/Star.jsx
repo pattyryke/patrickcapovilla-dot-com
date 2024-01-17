@@ -19,20 +19,20 @@ export default class Stars {
   
       switch (this.direction) {
         case 'top':
-          randX = (this.width/2) + (gsap.utils.random(-20, 20));
           randY = (this.height/2) + (gsap.utils.random(-50, 0));
+          randX = (this.width/2) + (gsap.utils.random(-20, 20));
           break;
         case 'bottom':
-          randX = (this.width/2) + (gsap.utils.random(-20, 20));
           randY = (this.height/2) + (gsap.utils.random(50, 0));
+          randX = (this.width/2) + (gsap.utils.random(-20, 20));
           break;
         case 'right':
-          randX = (this.width/2) + (gsap.utils.random(50, 0));
           randY = (this.height/2) + (gsap.utils.random(-20, 20));
+          randX = (this.width/2) + (gsap.utils.random(50, 0));
           break;
         case 'left':
-          randX = (this.width/2) + (gsap.utils.random(-50, 0));
           randY = (this.height/2) + (gsap.utils.random(-20, 20));
+          randX = (this.width/2) + (gsap.utils.random(-50, 0));
           break;
         default:
           throw new Error('Invalid direction');
