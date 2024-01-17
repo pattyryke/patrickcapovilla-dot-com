@@ -3,15 +3,10 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
 const Star = ({ parentRef, delay }) => {
-  let w = gsap.getProperty(parentRef.current, 'scrollWidth');
-  let h = gsap.getProperty(parentRef.current, 'scrollHeight');
-  var [initPos, setInitPos] = useState({ x: (w/2), y: (h/2) });
-  var [dest, setDest] = useState({ x: 0, y: 0 })
-
-
+  var [initPos, setInitPos] = useState({ x: 0, y: 0 });
+  var [dest, setDest] = useState({ x: 0, y: 0 });
   const starRef = useRef(null);
   const tl = useRef();
-
 
   const getDestination = (width, height) => {
     const randNum = Math.random();
@@ -29,10 +24,21 @@ const Star = ({ parentRef, delay }) => {
     }
   };
 
-  useGSAP(
+
+
+  useEffect(() => {
+    if (parentRef.current) {
+      let w = gsap.getProperty(parentRef.current, 'scrollWidth');
+      let h = gsap.getProperty(parentRef.current, 'scrollHeight');
+      setInitPos({ x: (w/2), y: (h/2) });
+      setDest(getDestination(w, h));
+    }
+  }, [parentRef]);
+
+  useEffect(
     () => {
-      const stars = gsap.utils.toArray('.star');
-      tl.current = gsap
+      if (parentRef.current && starRef.current) {
+        const tl = gsap
         .timeline({ 
           repeat: -1, 
           repeatRefresh: true, 
@@ -51,16 +57,12 @@ const Star = ({ parentRef, delay }) => {
           scale: 4,
           duration: 2,
         });
-      
-    }, {dependencies: [dest, delay], scope: parentRef, revertOnUpdate: false}
-  );
-  
-  useEffect(() => {
-    setInitPos({ x: (w/2), y: (h/2) });
 
-    var newDest = getDestination(w, h);
-    setDest(newDest);
-  }, [w, h]);
+        return () => tl.kill();
+      }
+      
+    }, [parentRef, delay, dest, initPos]);
+  
 
   return (
     <div

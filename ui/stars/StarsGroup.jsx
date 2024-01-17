@@ -5,7 +5,7 @@ import Star from "./Star";
 const StarsGroup = ({ numStars }) => {
   const parentRef = useRef(null);
   const numberOfStars = numStars;
-  const staggerDelay = 0.1;
+  const staggerDelay = 0.05;
 
 
   return (
