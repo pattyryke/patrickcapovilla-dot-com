@@ -1,24 +1,37 @@
 import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import Star from './Star';
+import Mapper from './functions/Mapper';
 
 
 const Stars = ({ parentRef, delay }) => {
-  const [star, setStar] = useState(null);
+  const [width, setWidth] = useState(gsap.getProperty(parentRef.current, 'scrollWidth'));
+  const [height, setHeight] = useState(gsap.getProperty(parentRef.current, 'scrollHeight'));
+  var mapper = new Mapper(Number(width), Number(height));
+
+  const [star, setStar] = useState();
   const starRef = useRef(null);
+
 
   useEffect(() => {
     if (parentRef.current) {
-      const w = gsap.getProperty(parentRef.current, 'scrollWidth');
-      const h = gsap.getProperty(parentRef.current, 'scrollHeight');
-      const newStar = new Star(w, h);
-      console.log(JSON.stringify(newStar));
+      setWidth(gsap.getProperty(parentRef.current, 'scrollWidth'));
+      setHeight(gsap.getProperty(parentRef.current, 'scrollHeight'));
+
+      mapper.initialize(width, height);
+
+      console.log('mapper:', mapper.x(100), mapper.y(100));
+      console.log('(x, y): (',width,height,')')
+
+      const newStar = new Star(mapper.x(100), mapper.y(100));
       setStar(newStar);
+      console.log(newStar);
     }
-  }, [parentRef]);
+  }, [parentRef.current]);
 
   useEffect(() => {
     if (parentRef.current && starRef.current && star) {
+      star.newDestination();
       const tl = gsap.timeline({ 
         repeat: -1, 
         repeatRefresh: true, 
@@ -44,7 +57,7 @@ const Stars = ({ parentRef, delay }) => {
         backgroundColor: 'yellow',
         scale: 4,
         duration: gsap.utils.random(2, 15),
-        ease: 'power4.inOut',
+        ease: 'power4.in',
       }, "<2");
 
 
