@@ -14,11 +14,12 @@ const ProjectComponent = ({ isFlipped, title, body }) => {
             <div className='project-row-container flipped'>
                 <div className='blank'></div>
                 <div className='content'>
-                    <div className='project-list-item' style={{marginRight: '150px'}}>
-                        <h3 className='project-item-title'>{title}</h3>
-                        <p className='project-item-body'>{body}</p>
+                    <div className='project-list-item' style={{marginRight: '10vw'}}>
+                        <h2 className='project-item-title header-font'>{title}</h2>
+                        <p className='project-item-body body-font'>{body}</p>
                         <NormalButton
-                            label='See more'
+                            className='project-item-btn'
+                            label='Read more'
                             handleClick={testHandleClick(title)}
                         />
                     </div>
@@ -29,11 +30,12 @@ const ProjectComponent = ({ isFlipped, title, body }) => {
         return (
             <div className='project-row-container'>
                 <div className='content'>
-                    <div className='project-list-item' style={{marginLeft: '150px'}}>
-                        <h3 className='project-item-title'>{title}</h3>
-                        <p className='project-item-body'>{body}</p>
+                    <div className='project-list-item' style={{marginLeft: '10vw'}}>
+                        <h2 className='project-item-title header-font'>{title}</h2>
+                        <p className='project-item-body body-font'>{body}</p>
                         <NormalButton
-                            label='See more'
+                            className='project-item-btn'
+                            label='Read more'
                             handleClick={testHandleClick(title)}
                         />
                     </div>

@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 
-const NormalButton = ({ label, handleClick }) => {
+const NormalButton = ({ label, className, handleClick }) => {
     return (
         <button 
-            className='project-item-btn'
+            className={className}
             onClick={() => console.log(handleClick)}
         >
             {label}
@@ -13,6 +13,7 @@ const NormalButton = ({ label, handleClick }) => {
 
 NormalButton.propTypes = {
     label: PropTypes.string,
+    className: PropTypes.string,
     handleClick: PropTypes.string,
 };
 

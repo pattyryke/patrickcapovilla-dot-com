@@ -1,53 +1,84 @@
-
+@keyframes liftItem {
+    0% {top: 0px;}
+    15% {top: -1px;}
+    30% {top: -3px;}
+    45% {top: -4px;}
+    50% {top: -5px;}
+    55% {top: -4px;}
+    70% {top: -3px;}
+    85% {top: 1px;}
+    100% {top: 0px;}
+}
 
 .project-list-container {
     display: grid;
+    width: 100%;
+    height: 100%;
     column-gap: 15px;
     row-gap: 15px;
 }
 .project-row-container {
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 1fr 4fr;
     grid-template-areas: "content blank";
     margin-left: 25px;
 }
 .project-row-container.flipped {
     display: grid;
-    grid-template-columns: 5fr 1fr;
+    grid-template-columns: 4fr 1fr;
     grid-template-areas: "blank content";
     margin-right: 25px;
 }
 .project-list-item {
     display: grid;
-    width: 200px;
-    height: 150px;
+    position: relative;
+    width: 300px;
+    height: 200px;
     margin: 20px;
     padding: 10px;
     grid-template-rows: 1fr 3fr 1fr;
-    justify-content: center;
+    justify-items: center;
     align-items: center;
     border-color: white;
     border-style: solid;
     border-radius: 10px;
+    background-color: #404040;
+    box-shadow: 5px 5px 5px black;
+}
+.project-list-item:hover {
+    border-color: #535bf2;
+    animation-name: liftItem;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
 }
 .project-item-title {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    max-height: 50px;
     text-align: center;
-    font-size: 1em;
+    font-size: 1.25em;
+    line-height: 75%;
     margin: 0px;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
 .project-item-body {
     justify-content: center;
-    font-size: 0.75em;
     margin: 5px;
+    font-size: 1em;
 }
 .project-item-btn {
-    max-height: 30px;
-    max-width: 100px;
-    margin-left: 50px;
-    margin-right: 50px;
-    font-size: 12px;
+    display: flex;
+    width: 150px;
+    height: 40px;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
 }

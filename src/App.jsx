@@ -6,7 +6,7 @@ import ProjectList from './components/project-showcase/ProjectList';
 
 function App() {
     return (
-        <>
+        <div className='background'>
             <TopBar />
 
             <div className='main-content-container'>
@@ -14,7 +14,7 @@ function App() {
             </div>
 
             <div id='bottom-bar'></div>
-        </>
+        </div>
     );
 }
 
