@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Geo:ital@0;1&family=MuseoModerno:ital,wght@0,100..900;1,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=VT323&display=swap');
+
+.title-style {
+    font-size: 3em;
+}
+.header-style {
+    font-size: 2em;
+}
+.body-style {
+    font-size: 1em;
+}
+
+
+$bit-font: (
+  family: "Geo",
+  fallback: sans-serif,
+  weight: 400,
+  style: normal
+);
+$modern-font: (
+  family: "MuseoModerno",
+  fallback: sans-serif,
+  optical-sizing: auto,
+  weight: 400,
+  style: normal
+);
+$block-font: (
+  family: "VT323",
+  fallback: monospace,
+  weight: 400,
+  style: normal
+);
+$coder-font: (
+  family: "Source Code Pro",
+  fallback: monospace,
+  optical-sizing: auto,
+  weight: 400,
+  style: normal
+);
+
+
+@mixin apply-font($font-map) {
+    font-family: map-get($font-map, family), map-get($font-map, fallback);
+    font-weight: map-get($font-map, weight);
+    font-style: map-get($font-map, style);
+  
+    @if map-has-key($font-map, optical-sizing) {
+        font-optical-sizing: map-get($font-map, optical-sizing);
+    }
+}
+
+
+@mixin bit {
+    @include apply-font($bit-font);
+}
+@mixin modern {
+    @include apply-font($modern-font);
+}
+@mixin block {
+    @include apply-font($block-font);
+}
+@mixin coder {
+    @include apply-font($coder-font);
+}
+
+
+.bit {
+    @include bit;
+}
+.modern {
+    @include modern;
+}
+.block {
+    @include block;
+}
+.coder {
+    @include coder;
+}
+
+
+.outline-text {
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+.outline-text-thick {
+    text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000;
+}

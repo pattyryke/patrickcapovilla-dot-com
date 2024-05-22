@@ -15,10 +15,12 @@ const ProjectComponent = ({ isFlipped, title, body }) => {
                 <div className='blank'></div>
                 <div className='content'>
                     <div className='project-list-item' style={{marginRight: '10vw'}}>
-                        <h2 className='project-item-title header-font'>{title}</h2>
-                        <p className='project-item-body body-font'>{body}</p>
+                        <h2 className='title outline-text header-font'>{title}</h2>
+                        <hr />
+                        <p className='body body-font'>{body}</p>
+                        <hr />
                         <NormalButton
-                            className='project-item-btn'
+                            className='btn body-font'
                             label='Read more'
                             handleClick={testHandleClick(title)}
                         />
@@ -31,10 +33,12 @@ const ProjectComponent = ({ isFlipped, title, body }) => {
             <div className='project-row-container'>
                 <div className='content'>
                     <div className='project-list-item' style={{marginLeft: '10vw'}}>
-                        <h2 className='project-item-title header-font'>{title}</h2>
-                        <p className='project-item-body body-font'>{body}</p>
+                        <h2 className='title outline-text header-font'>{title}</h2>
+                        <hr />
+                        <p className='body body-font'>{body}</p>
+                        <hr />
                         <NormalButton
-                            className='project-item-btn'
+                            className='btn body-font'
                             label='Read more'
                             handleClick={testHandleClick(title)}
                         />
