@@ -1,56 +1,33 @@
-:root {
-    font-family: '8bit', sans-serif;
-    font-weight: 400;
-    line-height: 1.5;
-
-    color-scheme: dark;
-    color: #efefef;
-    background-color: #242424;
-
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-.main-content-container {
-    display: block;
-    position: relative;
-    width: 80%;
-    height: 100%;
-    padding-top: 160px;
-    margin-left: 10%;
-    margin-right: 10%;
-    background-color: #242424;
-    justify-content: center;
-    align-items: center;
-}
-
-.background {
-    display: block;
-    position: relative;
+html, body {
+    box-sizing: border-box;
     width: 100%;
     height: 100%;
-    box-sizing: border-box;
-    background-color: rgb(0, 0, 0);
-}
-
-body {
+    padding: 0;
     margin: 0;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
-h1 {
-    font-size: 3.2em;
-    line-height: 1.1;
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #efefef;
 }
 
-a {
-    font-weight: 500;
-    color: #646cff;
-    text-decoration: inherit;
+.page-header, .page-footer {
+    flex-shrink: 0;
 }
-a:hover {
-    color: #535bf2;
+
+.page-body {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-top: 80px;
+    padding-bottom: 60px;
+    background-color: #fff;
+    flex-grow: 1;
+    overflow-y: auto;
 }
 
 button {
@@ -59,7 +36,7 @@ button {
     padding: 0.6em 1.2em;
     font-weight: 500;
     font-family: inherit;
-    background-color: #1a1a1a;
+    background-color: #efefef;
     cursor: pointer;
     transition: border-color 0.25s;
 }
@@ -69,17 +46,4 @@ button:hover {
 button:focus,
 button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-    :root {
-        color: #213547;
-        background-color: #efefef;
-    }
-    a:hover {
-        color: #747bff;
-    }
-    button {
-        background-color: #efefef;
-    }
 }

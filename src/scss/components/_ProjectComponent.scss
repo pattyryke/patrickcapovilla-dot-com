@@ -1,19 +1,20 @@
-@keyframes liftItem {
-    0% {
-        top: 0px;
-        box-shadow: 5px 5px 5px black;
+@keyframes lift {
+    from {
+        transform: translate(0px, 0px);
     }
-    50% {
-        top: -5px;
-        box-shadow: 5px 10px 7px black;
+    to {
+        transform: translate(8px, -8px);
+        box-shadow: -8px 8px #000;
     }
-    85% {
-        top: 1px;
-        box-shadow: 5px 3px 3px black;
+}
+@keyframes lower {
+    from {
+        transform: translate(8px, -8px);
+        box-shadow: -8px 8px #000;
     }
-    100% {
-        top: 0px;
-        box-shadow: 5px 5px 5px black;
+    to {
+        transform: translate(0px, 0px);
+        box-shadow: none;
     }
 }
 
@@ -35,21 +36,25 @@
     width: 400px;
     height: 200px;
     margin: 20px;
-    padding: 10px;
     justify-items: center;
     align-items: center;
-    border-color: white;
+    border-color: #242424;
     border-style: solid;
     border-radius: 10px;
-    background-color: #404040;
-    box-shadow: 5px 5px 5px black;
+    background-color: #fff;
 
     .title {
         display: flex;
+        height: 100%;
+        width: 100%;
+        border-top-left-radius: 7px;
+        border-top-right-radius: 7px;
         justify-content: center;
-        align-items: flex-start;
+        align-items: center;
         text-align: center;
         margin: 0px;
+        color: #fff;
+        background-color: $secondary;
     }
 
     .body {
@@ -75,12 +80,19 @@
         height: 4px;
         margin: 0;
         border: none;
-        background-color: #ffffff25;
+        background-color: #ffffff;
     }
 }
-.project-list-item:hover {
-    border-color: #535bf2;
-    animation-name: liftItem;
+.project-list-item {
     animation-duration: 0.5s;
     animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+.project-list-item:hover {
+    border-color: #242424;
+    animation-name: lift;
+}
+.project-list-item:not(:hover) {
+    animation-name: lower;
 }

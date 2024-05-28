@@ -1,79 +1,27 @@
-.top-bar {
-    display: grid;
+.page-header {
+    display: flex;
     position: fixed;
     top: 0;
-    grid-template-columns: 175px auto 175px;
     gap: 0.5rem;
     width: 100vw;
-    height: 160px;
+    height: 60px;
+    justify-content: center;
     align-items: center;
-    background-color: #242424;
-    box-shadow: 5px 3px 3px black;
+    background-color: $secondary;
+    box-shadow: 0px 5px 5px black;
+    flex-grow: 0;
+    flex-shrink: 0;
     z-index: 1;
-  
-    .contact-me-column {
-      display: flex;
-      height: 160px;
-      flex-direction: column;
-  
-      ul {
-        display: flex;
-        flex-direction: row;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        text-transform: uppercase;
-        font-size: 1.5em;
-        font-weight: 600;
-        color: #efefef;
-      }
-  
-      ul li {
-        display: flex;
-        padding: 5px;
-        position: relative;
-        overflow: hidden;
-        transition: 0.3s;
-  
-        .circle {
-          display: flex;
-          border-radius: 50%;
-          width: 30px;
-          height: 30px;
-          justify-content: center;
-          align-items: center;
-          cursor: pointer;
-          background-color: #efefef;
-  
-          img {
-            display: flex;
-            width: 25px;
-            height: 25px;
-            margin: 0;
-            padding: 0;
-            filter: drop-shadow(1px 1px 0 white)
-              drop-shadow(-1px 1px 0 white)
-              drop-shadow(1px -1px 0 white)
-              drop-shadow(-1px -1px 0 white);
-          }
-        }
-      }
-  
-      p {
-        font-size: 0.75em;
-        margin: 0;
-        padding-left: 10px;
-      }
-    }
   
     .title-container {
         display: flex;
         position: relative;
-        width: 100%;
-        height: 160px;
+        width: 40%;
+        height: 60px;
         overflow: visible;
         align-items: center;
         justify-content: center;
+        color: #fff;
     
         &:before {
           content: "";
@@ -105,7 +53,7 @@
                 flex: 1;
                 display: grid;
                 width: 100%;
-                height: calc(160px - 5em);
+                height: calc(60px - 0.5em);
                 grid-template-rows: repeat(2, 2fr) / 100%;
                 position: relative;
         
@@ -115,17 +63,17 @@
                 }
         
                 div:nth-child(1):hover ~ h2 {
-                    margin-top: 5px;
+                    margin-top: -5px;
                 }
         
                 div:nth-child(2):hover ~ h2 {
-                    margin-top: -15px;
+                    margin-top: -10px;
                 }
             }
         
             h2 {
                 position: absolute;
-                font-size: 2em;
+                font-size: 4em;
                 margin: auto;
                 left: 0;
                 right: 0;
