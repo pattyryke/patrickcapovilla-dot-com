@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Dungeon Master's Soundboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+<header>
+  <h1>⚔ The Dungeon Master's Soundboard ⚔</h1>
+  <p class="subtitle">Set the scene. Command the atmosphere.</p>
+</header>
+
+<!-- NOW PLAYING -->
+<div class="now-playing">
+  <div>
+    <div class="channel">
+      <div class="pulse inactive" id="ambience-pulse"></div>
+      <div>
+        <div class="channel-label">Ambience</div>
+        <div class="channel-name empty" id="ambience-name">Nothing playing</div>
+      </div>
+      <button class="stop-btn" onclick="stopChannel('ambience')">Stop</button>
+    </div>
+    <div class="volume-row">
+      <label>Vol</label>
+      <input type="range" min="0" max="1" step="0.05" value="0.2" oninput="setVolume('ambience', this.value)">
+    </div>
+    <div class="scrubber-row">
+      <span class="time-label" id="ambience-current">0:00</span>
+      <input class="scrubber" type="range" min="0" max="100" step="0.1" value="0" oninput="scrub('ambience', this.value)">
+      <span class="time-label" id="ambience-duration">0:00</span>
+    </div>
+  </div>
+  <div>
+    <div class="channel">
+      <div class="pulse inactive" id="music-pulse"></div>
+      <div>
+        <div class="channel-label">Music</div>
+        <div class="channel-name empty" id="music-name">Nothing playing</div>
+      </div>
+      <button class="stop-btn" onclick="stopChannel('music')">Stop</button>
+    </div>
+    <div class="volume-row">
+      <label>Vol</label>
+      <input type="range" min="0" max="1" step="0.05" value="0.5" oninput="setVolume('music', this.value)">
+    </div>
+    <div class="scrubber-row">
+      <span class="time-label" id="music-current">0:00</span>
+      <input class="scrubber" type="range" min="0" max="100" step="0.1" value="0" oninput="scrub('music', this.value)">
+      <span class="time-label" id="music-duration">0:00</span>
+    </div>
+  </div>
+</div>
+
+<!-- HIDDEN YT IFRAMES -->
+<div id="yt-container">
+  <div id="yt-ambience"></div>
+  <div id="yt-music"></div>
+</div>
+
+<main id="soundboard"></main>
+
+<script src="./soundboard.js"></script>
+<script>
+const SOUNDS = [
+  // TAVERN/INN
+  { category: 'Tavern / Inn', icon: '🔥', name: 'Cozy Tavern', channel: 'music', yt: 'orgikrTCKTc', loop: true },
+  { category: 'Tavern / Inn', icon: '🎵', name: 'Tavern Dance', channel: 'music', yt:'JyyQlYRqvRs', loop: true },
+  { category: 'Tavern / Inn', icon: '🧟', name: 'Shady Tavern', channel: 'music', yt: 'iQiUgrHqB9w', loop: true },
+  { category: 'Tavern / Inn', icon: '🍺', name: 'Busy Tavern', channel: 'ambience', yt: 'KecVJnJcSI4', loop: true },
+  { category: 'Tavern / Inn', icon: '🌧', name: 'Rain on Roof', channel: 'ambience', yt: 'XhAhviQaxpQ', loop: true },
+
+  // FOREST/NATURE
+  { category: 'Forest / Nature', icon: '🚶🏻‍♂️', name: 'Adventure Begins', channel: 'music', yt: 'Jikm8CCRbdM', loop: true },
+  { category: 'Forest / Nature', icon: '🛏️', name: 'Long Rest', channel: 'music', yt: '7T3SU4Ht1Yw', loop: true },
+  { category: 'Forest / Nature', icon: '🌊', name: 'Suspenseful Journey', channel: 'music', yt: 'EApZmmYg_oQ', loop: true },
+  { category: 'Forest / Nature', icon: '☔️', name: 'Thunderstorm', channel: 'ambience', yt: 'nDq6TstdEi8', loop: true },
+
+  // DUNGEON/CAVE
+  { category: 'Dungeon / Cave', icon: '🕯', name: 'Dark Dungeon', channel: 'ambience', yt: 'wScEFaoqwPM', loop: true },
+  { category: 'Dungeon / Cave', icon: '💧', name: 'Dripping Caves', channel: 'ambience', yt: '3Hwr_BaekgM', loop: true },
+  { category: 'Dungeon / Cave', icon: '🎶', name: 'Spooky Cave', channel: 'ambience', yt: 'LAO0LoXDQLs', loop: true },
+  { category: 'Dungeon / Cave', icon: '💨', name: 'Abandoned Ruins', channel: 'ambience', yt: '205meIww0zg', loop: true },
+  { category: 'Dungeon / Cave', icon: '😱', name: 'Underdark', channel: 'ambience', yt: '_8A8N9BI6T4', loop: true },
+
+  // COMBAT/BATTLE 
+  { category: 'Combat / Battle', icon: '⚔️', name: 'Battle Music', channel: 'music', yt: '8Q7cioftmKs', loop: true },
+  { category: 'Combat / Battle', icon: '👹', name: 'Boss Battle', channel: 'music', yt: 'JvullrPHYDQ', loop: true },
+  { category: 'Combat / Battle', icon: '🎺', name: 'Epic Charge', channel: 'music', yt: 'KU5EzBErrZ4', loop: true },
+  { category: 'Combat / Battle', icon: '😤', name: 'Intense Fight', channel: 'music', yt: 'JYFU_RiefKk', loop: true },
+  { category: 'Combat / Battle', icon: '⚔️', name: 'Final Boss', channel: 'music', yt: 'mWT11B_-sjQ', loop: true },
+  { category: 'Combat / Battle', icon: '🔫', name: 'Low-level Combat', channel: 'music', yt: '2GX9lVHfnxs', loop: true },
+
+  // TOWN/MARKET 
+  { category: 'Town / Market', icon: '🏘', name: 'Peaceful Town', channel: 'music', yt: 'Wb37MB07xyc', loop: true },
+  { category: 'Town / Market', icon: '🎶', name: 'Shire Music', channel: 'music', yt: 'HFlxEM6zZsc', loop: true },
+  { category: 'Town / Market', icon: '🌦', name: 'Light Rain', channel: 'ambience', yt: 'XeUFFUJZrwE', loop: true },
+  { category: 'Town / Market', icon: '⚒', name: 'Blacksmith', channel: 'ambience', yt: 'pRkFl9j3NLk', loop: true },
+
+  // SPOOKY/HORROR
+  { category: 'Spooky / Horror', icon: '🦇', name: 'Spooky', channel: 'ambience', yt: 'LAO0LoXDQLs', loop: true },
+  { category: 'Spooky / Horror', icon: '🎵', name: 'Creepy Town', channel: 'ambience', yt: '1xbvqsnOD-k', loop: true },
+  { category: 'Spooky / Horror', icon: '👻', name: 'Eerie', channel: 'ambience', yt: 'hf0n3T_5nTc', loop: true },
+  { category: 'Spooky / Horror', icon: '🌫', name: 'Ancient Evil', channel: 'ambience', yt: 'KU5EzBErrZ4', loop: true },
+
+
+  // // EPIC/DRAMATIC
+  // { category: 'Epic / Dramatic', icon: '🌅', name: 'Epic Orchestral', channel: 'music', yt: 'dB3RCpYPCGQ', loop: true },
+  // { category: 'Epic / Dramatic', icon: '🏔', name: 'Heroic Theme', channel: 'music', yt: 'pqlphmGVqAE', loop: true },
+  // { category: 'Epic / Dramatic', icon: '✨', name: 'Triumph', channel: 'music', yt: 'A4M4AoEsczU', loop: true },
+  // { category: 'Epic / Dramatic', icon: '😢', name: 'Emotional', channel: 'music', yt: 'uheaLaEL2cU', loop: true },
+];
+
+const state = {
+  ambience: { activeBtn: null, audio: null, ytId: null, name: null, volume: 0.7 },
+  music: { activeBtn: null, audio: null, ytId: null, name: null, volume: 0.7 },
+};
+
+
+// Load the API once
+const tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+document.head.appendChild(tag);
+
+// Store player objects
+const ytPlayers = { ambience: null, music: null };
+
+// Called automatically by the API when ready
+window.onYouTubeIframeAPIReady = function() {
+  ['ambience', 'music'].forEach(channel => {
+    ytPlayers[channel] = new YT.Player('yt-' + channel, {
+      height: '1', width: '1',
+      playerVars: { autoplay: 0, controls: 0 }
+    });
+  });
+};
+
+function getYtId(url) {
+  url = url.trim();
+  const match = url.match(/(?:v=|youtu\.be\/|embed\/)([a-zA-Z0-9_-]{11})/);
+  return match ? match[1] : (url.length === 11 ? url : null);
+}
+
+function setYtSrc(channel, ytId) {
+  ytPlayers[channel].loadVideoById({ videoId: ytId });
+  ytPlayers[channel].setVolume(state[channel].volume * 100);
+}
+
+function clearYt(channel) {
+  ytPlayers[channel].stopVideo();
+}
+
+function updateUI(channel, name) {
+  const nameEl = document.getElementById(channel + '-name');
+  const pulse = document.getElementById(channel + '-pulse');
+  if (name) {
+    nameEl.textContent = name;
+    nameEl.classList.remove('empty');
+    pulse.classList.remove('inactive');
+  } else {
+    nameEl.textContent = 'Nothing playing';
+    nameEl.classList.add('empty');
+    pulse.classList.add('inactive');
+  }
+}
+
+function stopChannel(channel) {
+  const s = state[channel];
+  if (s.audio) { s.audio.pause(); s.audio = null; }
+  clearYt(channel);
+  if (s.activeBtn) { 
+    s.activeBtn.classList.remove('active', 'music-active'); 
+    s.activeBtn = null; 
+  }
+  s.name = null;
+  updateUI(channel, null);
+}
+
+function playSound(sound, btn) {
+  const channel = sound.channel;
+  stopChannel(channel);
+  setYtSrc(channel, sound.yt, sound.loop);
+  state[channel].activeBtn = btn;
+  state[channel].name = sound.name;
+  btn.classList.add(channel === 'music' ? 'music-active' : 'active');
+  updateUI(channel, sound.name);
+}
+
+function playYoutube(channel) {
+  const url = document.getElementById('yt-url').value;
+  const id = getYtId(url);
+  if (!id) { alert('Invalid YouTube URL or ID'); return; }
+  stopChannel(channel);
+  setYtSrc(channel, id, true);
+  state[channel].name = 'YouTube: ' + id;
+  updateUI(channel, state[channel].name);
+}
+
+function playLocalFile(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const channel = document.getElementById('file-channel').value;
+  stopChannel(channel);
+  const url = URL.createObjectURL(file);
+  const audio = new Audio(url);
+  audio.loop = true;
+  audio.volume = state[channel].volume;
+  audio.play();
+  state[channel].audio = audio;
+  state[channel].name = file.name;
+  updateUI(channel, file.name);
+  input.value = '';
+}
+
+function setVolume(channel, val) {
+  state[channel].volume = parseFloat(val);
+  if (state[channel].audio) state[channel].audio.volume = parseFloat(val);
+  if (ytPlayers[channel]) ytPlayers[channel].setVolume(val * 100);
+}
+
+// Build the grid
+function buildUI() {
+  const board = document.getElementById('soundboard');
+  const categories = [...new Set(SOUNDS.map(s => s.category))];
+
+  const catIcons = {
+    'Tavern / Inn': '🍺',
+    'Forest / Nature': '🌲',
+    'Dungeon / Cave': '🕯',
+    'Combat / Battle': '⚔️',
+    'Town / Market': '🏘',
+    'Spooky / Horror': '👻',
+    // 'Epic / Dramatic': '✨',
+  };
+
+  categories.forEach(cat => {
+    const sounds = SOUNDS.filter(s => s.category === cat);
+    const section = document.createElement('div');
+    section.className = 'category';
+    section.innerHTML = `
+      <div class="category-header">
+        <span class="category-icon">${catIcons[cat] || '🎵'}</span>
+        <span class="category-title">${cat}</span>
+        <div class="category-line"></div>
+      </div>
+      <div class="sounds-grid"></div>
+    `;
+    const grid = section.querySelector('.sounds-grid');
+    sounds.forEach(sound => {
+      const btn = document.createElement('button');
+      btn.className = 'sound-btn';
+      btn.innerHTML = `
+        <span class="sound-icon">${sound.icon}</span>
+        <span class="sound-name">${sound.name}</span>
+        <span class="sound-type">${sound.channel}</span>
+      `;
+      btn.onclick = () => playSound(sound, btn);
+      grid.appendChild(btn);
+    });
+    board.appendChild(section);
+  });
+}
+
+buildUI();
+</script>
+</body>
+</html>

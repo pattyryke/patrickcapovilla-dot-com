@@ -1,0 +1,42 @@
+{
+  "tavern": [
+    { "category": "Tavern / Inn", "icon": "🔥", "name": "Cozy Tavern", "channel": "music", "yt": "orgikrTCKTc", "loop": true },
+    { "category": "Tavern / Inn", "icon": "🎵", "name": "Tavern Dance", "channel": "music", "yt": "JyyQlYRqvRs", "loop": true },
+    { "category": "Tavern / Inn", "icon": "🧟", "name": "Shady Tavern", "channel": "music", "yt": "iQiUgrHqB9w", "loop": true },
+    { "category": "Tavern / Inn", "icon": "🍺", "name": "Busy Tavern", "channel": "ambience", "yt": "KecVJnJcSI4", "loop": true },
+    { "category": "Tavern / Inn", "icon": "🌧", "name": "Rain on Roof", "channel": "ambience", "yt": "XhAhviQaxpQ", "loop": true }
+  ],
+  "forest_nature": [
+    { "category": "Forest / Nature", "icon": "🚶", "name": "Adventure Begins", "channel": "music", "yt": "Jikm8CCRbdM", "loop": true },
+    { "category": "Forest / Nature", "icon": "🛏", "name": "Long Rest", "channel": "music", "yt": "7T3SU4Ht1Yw", "loop": true },
+    { "category": "Forest / Nature", "icon": "🌊", "name": "Suspenseful Journey", "channel": "music", "yt": "EApZmmYg_oQ", "loop": true },
+    { "category": "Forest / Nature", "icon": "☔", "name": "Thunderstorm", "channel": "ambience", "yt": "nDq6TstdEi8", "loop": true }
+  ],
+  "dungeon_cave": [
+    { "category": "Dungeon / Cave", "icon": "🕯", "name": "Dark Dungeon", "channel": "ambience", "yt": "wScEFaoqwPM", "loop": true },
+    { "category": "Dungeon / Cave", "icon": "💧", "name": "Dripping Caves", "channel": "ambience", "yt": "3Hwr_BaekgM", "loop": true },
+    { "category": "Dungeon / Cave", "icon": "🎶", "name": "Spooky Cave", "channel": "ambience", "yt": "LAO0LoXDQLs", "loop": true },
+    { "category": "Dungeon / Cave", "icon": "💨", "name": "Abandoned Ruins", "channel": "ambience", "yt": "205meIww0zg", "loop": true },
+    { "category": "Dungeon / Cave", "icon": "😱", "name": "Underdark", "channel": "ambience", "yt": "_8A8N9BI6T4", "loop": true }
+  ],
+  "combat_battle": [
+    { "category": "Combat / Battle", "icon": "⚔️", "name": "Battle Music", "channel": "music", "yt": "8Q7cioftmKs", "loop": true },
+    { "category": "Combat / Battle", "icon": "👹", "name": "Boss Battle", "channel": "music", "yt": "JvullrPHYDQ", "loop": true },
+    { "category": "Combat / Battle", "icon": "🎺", "name": "Epic Charge", "channel": "music", "yt": "KU5EzBErrZ4", "loop": true },
+    { "category": "Combat / Battle", "icon": "😤", "name": "Intense Fight", "channel": "music", "yt": "JYFU_RiefKk", "loop": true },
+    { "category": "Combat / Battle", "icon": "⚔️", "name": "Final Boss", "channel": "music", "yt": "mWT11B_-sjQ", "loop": true },
+    { "category": "Combat / Battle", "icon": "🔫", "name": "Low-level Combat", "channel": "music", "yt": "2GX9lVHfnxs", "loop": true }
+  ],
+  "town": [
+    { "category": "Town / Market", "icon": "🏘", "name": "Peaceful Town", "channel": "music", "yt": "Wb37MB07xyc", "loop": true },
+    { "category": "Town / Market", "icon": "🎶", "name": "Shire Music", "channel": "music", "yt": "HFlxEM6zZsc", "loop": true },
+    { "category": "Town / Market", "icon": "🌦", "name": "Light Rain", "channel": "ambience", "yt": "XeUFFUJZrwE", "loop": true },
+    { "category": "Town / Market", "icon": "⚒", "name": "Blacksmith", "channel": "ambience", "yt": "pRkFl9j3NLk", "loop": true }
+  ],
+  "spooky": [
+    { "category": "Spooky / Horror", "icon": "🦇", "name": "Spooky", "channel": "ambience", "yt": "LAO0LoXDQLs", "loop": true },
+    { "category": "Spooky / Horror", "icon": "🎵", "name": "Creepy Town", "channel": "ambience", "yt": "1xbvqsnOD-k", "loop": true },
+    { "category": "Spooky / Horror", "icon": "👻", "name": "Eerie", "channel": "ambience", "yt": "hf0n3T_5nTc", "loop": true },
+    { "category": "Spooky / Horror", "icon": "🌫", "name": "Ancient Evil", "channel": "ambience", "yt": "KU5EzBErrZ4", "loop": true }
+  ]
+}
