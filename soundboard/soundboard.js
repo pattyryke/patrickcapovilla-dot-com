@@ -1,5 +1,3 @@
-// const SOUNDS = 
-
 const state = {
   ambience: { activeBtn: null, audio: null, ytId: null, name: null, volume: 0.2 },
   music: { activeBtn: null, audio: null, ytId: null, name: null, volume: 0.5 },
@@ -93,6 +91,22 @@ function setVolume(channel, val) {
   if (ytPlayers[channel]) ytPlayers[channel].setVolume(val * 100);
 }
 
+function playLocalFile(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const channel = document.getElementById('file-channel').value;
+  stopChannel(channel);
+  const url = URL.createObjectURL(file);
+  const audio = new Audio(url);
+  audio.loop = true;
+  audio.volume = state[channel].volume;
+  audio.play();
+  state[channel].audio = audio;
+  state[channel].name = file.name;
+  updateUI(channel, file.name);
+  input.value = '';
+}
+
 // Fade in function
 function fadeIn(channel, targetVolume, duration = 10000) {
   const steps = 40;
@@ -152,14 +166,6 @@ function buildUI(SOUNDS) {
     board.appendChild(section);
   });
 }
-
-fetch('./sounds.json')
-  .then(res => res.json())
-  .then(data => {
-    const sounds = Object.values(data).flat();
-    buildUI(sounds);
-  });
-
 
 // Format seconds as m:ss
 function formatTime(seconds) {
