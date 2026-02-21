@@ -2,39 +2,82 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<link
-			rel="icon"
-			type="image/svg+xml"
-			href="/vite.svg"
-		/>
 		<meta
 			name="viewport"
 			content="width=device-width, initial-scale=1.0"
 		/>
 		<title>Patrick Capovilla</title>
-		<script>
-			// Decode the path redirect from 404.html (spa-github-pages)
-			(function (l) {
-				if (l.search[1] === '/') {
-					var decoded = l.search
-						.slice(1)
-						.split('&')
-						.map(function (s) {
-							return s.replace(/~and~/g, '&');
-						});
-					window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded[0] + (decoded[1] ? '?' + decoded[1] : '') + l.hash);
-				}
-			})(window.location);
-		</script>
+		<link
+			rel="stylesheet"
+			href="styles.css"
+		/>
+		<script src="scripts.js"></script>
 	</head>
 	<body>
 		<div
 			id="root"
 			class="modern"
-		></div>
-		<script
-			type="module"
-			src="/src/main.jsx"
-		></script>
+		>
+			<div class="background-container">
+				<div class="background">
+					<div class="main">
+						<div class="top-bar">
+							<div class="title-container">
+								<div class="title">patrickcapovilla.com</div>
+							</div>
+						</div>
+						<div class="content">
+							<div class="projects">
+								<div class="project-card">
+									<div class="project-title">DnD Soundboard</div>
+									<div class="project-description">A soundboard application for Dungeons & Dragons sessions.</div>
+									<a
+										href="http://patrickcapovilla.com/soundboard"
+										class="project-link"
+									>
+										View Project
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="footer">
+							<div class="contact-me">
+								<div class="text">
+									<p class="outline-text">iam@patrickcapovilla.com</p>
+								</div>
+								<div class="icons">
+									<ul class="icon-list outline-text">
+										<li>
+											<div class="circle">
+												<img
+													src="/public/linkedin-50.png"
+													onclick="handleLinkedIn()"
+												/>
+											</div>
+										</li>
+										<li>
+											<div class="circle">
+												<img
+													src="/public/github-50.png"
+													onclick="handleGithub()"
+												/>
+											</div>
+										</li>
+										<li>
+											<div class="circle">
+												<img
+													src="/public/discord-50.png"
+													onclick="handleDiscord()"
+												/>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>

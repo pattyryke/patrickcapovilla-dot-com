@@ -1,0 +1,192 @@
+/* =============================================================
+   DESIGN TOKENS
+   ============================================================= */
+:root {
+	--color-cream: #faf7f2; /* background */
+	--color-pink: #e88fc7; /* accent      */
+	--color-charcoal: #2e2e2e; /* text / borders */
+	--color-pink-dark: #d470ad; /* hover state for pink elements */
+
+	--font-base: sans-serif;
+	--radius: 10px;
+	--transition-speed: 0.25s;
+}
+
+/* =============================================================
+   RESET
+   ============================================================= */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+/* =============================================================
+   BASE
+   ============================================================= */
+body {
+	font-family: var(--font-base);
+	background-color: var(--color-cream);
+	color: var(--color-charcoal);
+	height: 100vh;
+	overflow: hidden;
+}
+
+.background-container,
+.background,
+.main {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+/* =============================================================
+   TOP BAR
+   ============================================================= */
+.top-bar {
+	flex-shrink: 0;
+	background-color: var(--color-pink);
+	padding: 16px 24px;
+}
+
+.title-container .title {
+	font-size: 1.5rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--color-charcoal);
+}
+
+/* =============================================================
+   CONTENT AREA
+   ============================================================= */
+.content {
+	flex-grow: 1;
+	overflow-y: auto;
+	padding: 40px 10%;
+	background-color: var(--color-cream);
+}
+
+/* =============================================================
+   PROJECT CARDS
+   ============================================================= */
+.projects {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 24px;
+}
+
+.project-card {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	width: 320px;
+	padding: 20px;
+	border: 2px solid var(--color-charcoal);
+	border-radius: var(--radius);
+	background-color: var(--color-cream);
+	transition:
+		transform var(--transition-speed) ease,
+		box-shadow var(--transition-speed) ease;
+}
+
+.project-card:hover {
+	transform: translate(6px, -6px);
+	box-shadow: -6px 6px var(--color-charcoal);
+}
+
+.project-title {
+	font-size: 1.1rem;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	color: var(--color-charcoal);
+}
+
+.project-description {
+	font-size: 0.9rem;
+	color: var(--color-charcoal);
+}
+
+.project-link {
+	align-self: flex-start;
+	padding: 8px 20px;
+	border: 1px solid var(--color-charcoal);
+	border-radius: 6px;
+	font-size: 0.85rem;
+	font-weight: 600;
+	text-decoration: none;
+	color: var(--color-charcoal);
+	background-color: var(--color-pink);
+	transition: background-color var(--transition-speed);
+}
+
+.project-link:hover {
+	background-color: var(--color-pink-dark);
+}
+
+/* =============================================================
+   FOOTER
+   ============================================================= */
+.footer {
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+    min-width: 100%;
+	background-color: var(--color-pink);
+	padding: 16px 24px;
+}
+
+.contact-me {
+	display: flex;
+	align-items: center;
+    justify-content: space-between;
+	gap: 24px;
+}
+
+.contact-me .text p {
+	font-size: 0.9rem;
+	color: var(--color-charcoal);
+}
+
+/* =============================================================
+   ICON LIST
+   ============================================================= */
+.icon-list {
+	display: flex;
+	list-style: none;
+	gap: 12px;
+}
+
+.circle {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	background-color: var(--color-cream);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	cursor: pointer;
+	transition: opacity var(--transition-speed);
+}
+
+.circle:hover {
+	opacity: 0.75;
+}
+
+.circle img {
+	width: 24px;
+	height: 24px;
+	object-fit: contain;
+}
+
+/* =============================================================
+   UTILITIES
+   ============================================================= */
+.outline-text {
+	-webkit-text-stroke: 1px var(--color-charcoal);
+	color: transparent;
+}
