@@ -74,7 +74,6 @@ function playSound(sound, btn) {
 	state[channel].name = sound.name;
 	btn.classList.add(channel === 'music' ? 'music-active' : 'active');
 	updateUI(channel, sound.name);
-	fadeIn(channel, state[channel].volume);
 }
 
 function playYoutube(channel) {
@@ -88,7 +87,6 @@ function playYoutube(channel) {
 	setYtSrc(channel, id, true);
 	state[channel].name = 'YouTube: ' + id;
 	updateUI(channel, state[channel].name);
-	fadeIn(channel, state[channel].volume);
 }
 
 function setVolume(channel, val) {
@@ -113,22 +111,6 @@ function playLocalFile(input) {
 	input.value = '';
 }
 
-// Fade in function
-function fadeIn(channel, targetVolume, duration = 10000) {
-	const steps = 40;
-	const interval = duration / steps;
-	const increment = targetVolume / steps;
-	let current = 0;
-
-	const timer = setInterval(() => {
-		current = Math.min(current + increment, targetVolume);
-
-		if (ytPlayers[channel]) ytPlayers[channel].setVolume(current * 100);
-		if (state[channel].audio) state[channel].audio.volume = current;
-
-		if (current >= targetVolume) clearInterval(timer);
-	}, interval);
-}
 
 // Build the grid
 function buildUI(SOUNDS) {
