@@ -1,13 +1,20 @@
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import NormalButton from '../common-elements/NormalButton';
 
-
-
-function testHandleClick(title) {
-    return (`${title} has been clicked.`);
+function useHandleClick(url) {
+    const navigate = useNavigate();
+    return () => {
+        if (url.startsWith('/')) {
+            navigate(url);
+        } else {
+            window.open(url, '_blank');
+        }
+    };
 }
 
-const ProjectComponent = ({ isFlipped, title, body }) => {
+const ProjectComponent = ({ isFlipped, title, body, url }) => {
+    const handleClick = useHandleClick(url);
 
     if (isFlipped === true) {
         return (
@@ -22,7 +29,7 @@ const ProjectComponent = ({ isFlipped, title, body }) => {
                         <NormalButton
                             className='btn body-font'
                             label='Read more'
-                            handleClick={testHandleClick(title)}
+                            handleClick={handleClick}
                         />
                     </div>
                 </div>
@@ -40,7 +47,7 @@ const ProjectComponent = ({ isFlipped, title, body }) => {
                         <NormalButton
                             className='btn body-font'
                             label='Read more'
-                            handleClick={testHandleClick(title)}
+                            handleClick={handleClick}
                         />
                     </div>
                 </div>
@@ -54,6 +61,7 @@ ProjectComponent.propTypes = {
     isFlipped: PropTypes.bool, 
     title: PropTypes.string, 
     body: PropTypes.string, 
+    url: PropTypes.string, 
 };
 
 export default ProjectComponent;
