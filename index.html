@@ -1,14 +1,83 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Patrick Capovilla</title>
-    <script type="module" crossorigin src="/assets/index-ChEiV2oB.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Dd9GOYbt.css">
-  </head>
-  <body>
-    <div id="root" class="modern"></div>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Patrick Capovilla</title>
+		<link
+			rel="stylesheet"
+			href="styles.css"
+		/>
+		<script src="scripts.js"></script>
+	</head>
+	<body>
+		<div
+			id="root"
+			class="modern"
+		>
+			<div class="background-container">
+				<div class="background">
+					<div class="main">
+						<div class="top-bar">
+							<div class="title-container">
+								<div class="title">patrickcapovilla.com</div>
+							</div>
+						</div>
+						<div class="content">
+							<div class="projects">
+								<div class="project-card">
+									<div class="project-title">DnD Soundboard</div>
+									<div class="project-description">A soundboard application for Dungeons & Dragons sessions.</div>
+									<a
+										href="/soundboard"
+										class="project-link"
+									>
+										View Project
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="footer">
+							<div class="contact-me">
+								<div class="text">
+									<p class="outline-text">iam@patrickcapovilla.com</p>
+								</div>
+								<div class="icons">
+									<ul class="icon-list outline-text">
+										<li>
+											<div class="circle">
+												<img
+													src="/public/linkedin-50.png"
+													onclick="handleLinkedIn()"
+												/>
+											</div>
+										</li>
+										<li>
+											<div class="circle">
+												<img
+													src="/public/github-50.png"
+													onclick="handleGithub()"
+												/>
+											</div>
+										</li>
+										<li>
+											<div class="circle">
+												<img
+													src="/public/discord-50.png"
+													onclick="handleDiscord()"
+												/>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
